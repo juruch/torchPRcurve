@@ -39,7 +39,9 @@ PR_curve <- function(pred_tensor, label_tensor){
     FNR=FNR,
     recall=recall,
     precision=precision,
-    "min(prec,rec)"=torch::torch_minimum(1 - precision, 1 - recall),
+    # 1-precision = False Discovery Rate
+    # 1-recall = False Negative Rate
+    "min(FDR,FNR)"=torch::torch_minimum(1 - precision, 1 - recall),
     min_constant=torch::torch_cat(list(torch::torch_tensor(-Inf), uniq_thresh)),
     max_constant=torch::torch_cat(list(uniq_thresh, torch::torch_tensor(Inf))))
 }
