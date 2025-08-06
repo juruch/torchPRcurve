@@ -18,22 +18,11 @@ PR_curve <- function(pred_tensor, label_tensor){
   uniq_fn_before = sorted_fn_cum[sorted_fn_end]
   FPR = torch::torch_cat(list(torch::torch_tensor(0.0), uniq_fp_after))
   FNR = torch::torch_cat(list(uniq_fn_before, torch::torch_tensor(0.0)))
-  total_positives = torch::torch_sum(is_positive)
-  total_negatives = torch::torch_sum(is_negative)
-  TP = total_positives * (1 - FNR)
-  FP = total_negatives * FPR
-  FN = total_positives * FNR
-  #handle cases where the denominator is equal to zero
-  precision = torch::torch_where(
-    TP + FP == 0,
-    torch::torch_tensor(NaN), 
-    TP / (TP + FP)
-  )
-  recall = torch::torch_where(
-    TP + FN == 0,
-    torch::torch_tensor(NaN), 
-    TP / (TP + FN)
-  )
+  TP = fn_denom * (1 - FNR)
+  FP = fp_denom * FPR
+  FN = fn_denom * FNR
+  precision = TP / (TP + FP)
+  recall = TP / (TP + FN)
   list(
     FPR=FPR,
     FNR=FNR,
@@ -41,7 +30,7 @@ PR_curve <- function(pred_tensor, label_tensor){
     precision=precision,
     # 1-precision = False Discovery Rate
     # 1-recall = False Negative Rate
-    "min(FDR,FNR)"=torch::torch_minimum(1 - precision, 1 - recall),
+    "min(FDR,FNR)"=torch::torch_minimum(1 - precision, FNR),
     min_constant=torch::torch_cat(list(torch::torch_tensor(-Inf), uniq_thresh)),
     max_constant=torch::torch_cat(list(uniq_thresh, torch::torch_tensor(Inf))))
 }
