@@ -18,19 +18,19 @@ PR_curve <- function(pred_tensor, label_tensor){
   uniq_fn_before = sorted_fn_cum[sorted_fn_end]
   FPR = torch::torch_cat(list(torch::torch_tensor(0.0), uniq_fp_after))
   FNR = torch::torch_cat(list(uniq_fn_before, torch::torch_tensor(0.0)))
-  TP = fn_denom * (1 - FNR)
+  TP = fn_denom * (1 - FNR) #changer le code pour qqch de plus simple
   FP = fp_denom * FPR
   FN = fn_denom * FNR
   precision = TP / (TP + FP)
   recall = TP / (TP + FN)
   list(
-    FPR=FPR,
     FNR=FNR,
     recall=recall,
     precision=precision,
+    FDR=1-precision,
     # 1-precision = False Discovery Rate
     # 1-recall = False Negative Rate
-    "min(FDR,FNR)"=torch::torch_minimum(1 - precision, FNR),
+    "min(FDR,FNR)"=torch::torch_minimum(FDR, FNR),
     min_constant=torch::torch_cat(list(torch::torch_tensor(-Inf), uniq_thresh)),
     max_constant=torch::torch_cat(list(uniq_thresh, torch::torch_tensor(Inf))))
 }
