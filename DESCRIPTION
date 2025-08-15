@@ -1,0 +1,19 @@
+Package: torchPRcurve
+Type: Package
+Title: Precision Recall Curves in Torch
+Version: 2025.7.30
+Encoding: UTF-8
+Authors@R: c(
+    person("Justine", "Ruch",  
+    email = "justinegabrielleruch@gmail.com", 
+    role = c("aut", "cre"),
+    comment = c()))
+Description: Torch code to compute the Precision Recall curves, 
+ <https://wiki.cloudfactory.com/docs/mp-wiki/metrics/precision-recall-curve-and-auc-pr>.
+ Useful to then compute the Precision Recall Area Under the Curve.
+License: LGPL-3
+URL: https://github.com/juruch/Torch-PR-curve
+BugReports: https://github.com/juruch/Torch-PR-curve/issues
+Imports: 
+    torch
+
