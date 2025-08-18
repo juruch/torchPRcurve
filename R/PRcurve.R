@@ -23,11 +23,12 @@ PR_curve <- function(pred_tensor, label_tensor){
   FN = fn_denom * FNR
   precision = TP / (TP + FP)
   recall = TP / (TP + FN)
+  FDR = 1 - precision
   list(
     FNR=FNR,
     recall=recall,
     precision=precision,
-    FDR=1-precision,
+    FDR=FDR,
     # 1-precision = False Discovery Rate
     # 1-recall = False Negative Rate
     "min(FDR,FNR)"=torch::torch_minimum(FDR, FNR),
