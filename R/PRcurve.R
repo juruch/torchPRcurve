@@ -21,7 +21,11 @@ PR_curve <- function(pred_tensor, label_tensor){
   TP = fn_denom * (1 - FNR)
   FP = fp_denom * FPR
   FN = fn_denom * FNR
-  precision = TP / (TP + FP)
+  precision = torch::torch_where(
+    TP + FP == 0,
+    torch::torch_tensor(1), 
+    TP / (TP + FP)
+  )
   recall = TP / (TP + FN)
   FDR = 1 - precision
   list(
