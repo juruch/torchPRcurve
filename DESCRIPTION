@@ -15,5 +15,6 @@ License: LGPL-3
 URL: https://github.com/juruch/Torch-PR-curve
 BugReports: https://github.com/juruch/Torch-PR-curve/issues
 Imports: 
+    ggplot2,
     torch
 
