@@ -1,7 +1,7 @@
 ## from https://github.com/OGuenoun/R-AUM_Multiclass/blob/main/AUM_comparison.r
 ## and  https://github.com/tdhock/imbalanced-paper/blob/main/2025-07-30-conv-linear-prop0.01.R
 
-Measure_Classif_PRAUM = R6::R6Class(
+MeasureClassifPRAUM = R6::R6Class(
   "MeasureClassifPRAUM",
   inherit = mlr3::MeasureClassif,
   public = list(
