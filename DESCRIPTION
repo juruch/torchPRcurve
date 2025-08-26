@@ -17,4 +17,4 @@ BugReports: https://github.com/juruch/Torch-PR-curve/issues
 Imports: 
     ggplot2,
     torch
-
+RoxygenNote: 7.3.2
