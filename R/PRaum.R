@@ -18,7 +18,7 @@
 #' @seealso [PR_curve()]
 #' @export
 
-Proposed_AUM <- function(pred_tensor, label_tensor){
+PR_AUM <- function(pred_tensor, label_tensor){
   pr = PR_curve(pred_tensor, label_tensor)
   N = length(pr$recall)  
   min_FDR_FNR = pr[["min(FDR,FNR)"]][2:-2]

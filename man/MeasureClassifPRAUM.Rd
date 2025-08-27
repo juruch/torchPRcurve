@@ -2,19 +2,19 @@
 % Please edit documentation in R/MeasureClassifPRaum.R
 \name{MeasureClassifPRAUM}
 \alias{MeasureClassifPRAUM}
-\title{Custom mlr3 Measure: Proposed AUM}
+\title{Custom mlr3 Measure: PR AUM}
 \format{
 [R6::R6Class] object.
 }
 \description{
 An [mlr3::MeasureClassif] implementation that evaluates binary classifiers
-using the Proposed AUM metric (Area Under Minimum(FDR,FNR)).
+using the PR AUM metric (Area Under Minimum(FDR,FNR)).
 }
 \details{
 This measure is designed for imbalanced binary classification. It treats
 labels as `-1` (negative class) and `+1` (positive class), converts
 predictions into torch tensors, and computes the AUM score via
-[Proposed_AUM()]. The measure is minimized, with values closer to 0
+[PR_AUM()]. The measure is minimized, with values closer to 0
 indicating better performance.
 
 The `initialize()` method sets up the measure with default properties.
@@ -28,7 +28,7 @@ Original implementation ideas adapted from:
 }
 }
 \seealso{
-[Proposed_AUM()], [PR_curve()]
+[PR_AUM()], [PR_curve()]
 }
 \section{Super classes}{
 \code{\link[mlr3:Measure]{mlr3::Measure}} -> \code{\link[mlr3:MeasureClassif]{mlr3::MeasureClassif}} -> \code{MeasureClassifPRAUM}

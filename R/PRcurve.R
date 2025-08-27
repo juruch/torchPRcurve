@@ -21,8 +21,8 @@
 #'   \item `FNR` - false negative rate
 #'   \item `FDR` - false discovery rate
 #'   \item `"min(FDR,FNR)"` - minimum of FDR and FNR
-#'   \item `min_constant` - left endpoints of threshold intervals
-#'   \item `max_constant` - right endpoints of threshold intervals
+#'   \item `min_constant` - left endpoints of the  constant added to predicted score
+#'   \item `max_constant` - right endpoints of the  constant added to predicted score
 #' }
 #'
 #' @export
